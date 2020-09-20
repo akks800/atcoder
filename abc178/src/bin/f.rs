@@ -29,6 +29,8 @@ impl Solver {
             }
         }
         if let Some((p2, val)) = conflict {
+            //         0    p1    p2    p3    p4    n
+            // level   00000111111222222111111000000
             let level = |i| if a[i] == val { 1 } else { 0 } + if b[i] == val { 1 } else { 0 };
             let p1 = (0..p2).filter(|&i| level(i) == 0).count();
             let p3 = p2 + (p2..n).filter(|&i| level(i) == 2).count();
